@@ -78,6 +78,43 @@ include_once 'Campeon.php';
                 return null; // Retorna null si no se encuentra el campeón con el nombre proporcionado
             }
         }
+        public static function update(Campeon $campeon): bool {
+            try {
+                include_once '../Conexion/conexion.php';
+                $conexion = Conexion::obtenerConexion();
+    
+                $sql = "UPDATE campeon SET nombre = :nombre, rol = :rol, dificultad = :dificultad, descripcion = :descripcion WHERE id = :id";
+                $sentencia = $conexion->prepare($sql);
+    
+                $sentencia->bindValue(":nombre", $campeon->getNombre());
+                $sentencia->bindValue(":rol", $campeon->getRol());
+                $sentencia->bindValue(":dificultad", $campeon->getDificultad());
+                $sentencia->bindValue(":descripcion", $campeon->getDescripcion());
+                $sentencia->bindValue(":id", $campeon->getId());
+    
+                return $sentencia->execute();
+            } catch (PDOException $e) {
+                // Manejar el error según tus necesidades
+                return false;
+            }
+        }
+
+        public static function delete($id): bool {
+            try {
+                include_once '../Conexion/conexion.php';
+                $conexion = Conexion::obtenerConexion();
+    
+                $sql = "DELETE FROM campeon WHERE id = :id";
+                $sentencia = $conexion->prepare($sql);
+                $sentencia->bindValue(":id", $id);
+    
+                return $sentencia->execute();
+            } catch (PDOException $e) {
+                // Manejar el error según tus necesidades
+                return false;
+            }
+        }
+    
         
     }
 

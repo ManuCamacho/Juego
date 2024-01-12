@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (CampeonBD::update($campeonModificado)) {
             echo "Campeón modificado correctamente.";
+            echo "<br><a href='../Vista/mostrarTodo.php'><button>Ver Todos</button></a>";
         } else {
             echo "Error al modificar el campeón.";
         }
