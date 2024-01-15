@@ -16,9 +16,7 @@
             <option value="apoyo">Apoyo</option>
             <option value="asesion">Asesino</option>
             <option value="tirador">Tirador</option>
-            <option value="tanque">Tanque</option>
-            
-            <!-- Agrega más opciones según los roles disponibles en tu base de datos -->
+            <option value="tanque">Tanque</option>            
         </select>
         <br><br>
         <input type="submit" name="mostrar" value="Mostrar">

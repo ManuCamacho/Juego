@@ -5,14 +5,12 @@ include_once "../Modelo/CampeonBD.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["modificar"])) {
         // Modificar el campeón
-        $id = $_POST["id"];
         $nombre = $_POST["nombre"];
         $rol = $_POST["rol"];
         $dificultad = $_POST["dificultad"];
         $descripcion = $_POST["descripcion"];
 
         $campeonModificado = new Campeon();
-        $campeonModificado->setId($id);
         $campeonModificado->setNombre($nombre);
         $campeonModificado->setRol($rol);
         $campeonModificado->setDificultad($dificultad);
@@ -25,13 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error al modificar el campeón.";
         }
     } elseif (isset($_POST["eliminar"])) {
-        // Eliminar el campeón
-        $id = $_POST["id"];
-
-        if (CampeonBD::delete($id)) {
-            echo "Campeón eliminado correctamente.";
+        // Obtener el nombre del campeón a eliminar
+        $nombreCampeon = $_POST["nombre"];
+    
+        // Verificar si el nombre del campeón no está vacío
+        if (!empty($nombreCampeon)) {
+            // Intentar eliminar el campeón
+            if (CampeonBD::delete($nombreCampeon)) {
+                echo "<br>Campeón eliminado correctamente";
+            } else {
+                echo "<br>No se ha podido eliminar el campeón";
+            }
         } else {
-            echo "Error al eliminar el campeón.";
+            echo "<br>Por favor, selecciona un campeón a eliminar";
         }
     }
 }

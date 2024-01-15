@@ -75,7 +75,7 @@ include_once 'Campeon.php';
                 $campeon->setDescripcion($fila['descripcion']);
                 return $campeon;
             } else {
-                return null; // Retorna null si no se encuentra el campeón con el nombre proporcionado
+                return null; 
             }
         }
         public static function update(Campeon $campeon): bool {
@@ -94,7 +94,6 @@ include_once 'Campeon.php';
     
                 return $sentencia->execute();
             } catch (PDOException $e) {
-                // Manejar el error según tus necesidades
                 return false;
             }
         }
@@ -110,7 +109,6 @@ include_once 'Campeon.php';
     
                 return $sentencia->execute();
             } catch (PDOException $e) {
-                // Manejar el error según tus necesidades
                 return false;
             }
         }
